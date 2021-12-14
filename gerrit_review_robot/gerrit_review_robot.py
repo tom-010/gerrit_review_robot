@@ -3,6 +3,7 @@ import argparse
 from gerrit_review_robot.gerrit import Gerrit
 import os
 from easy_exec import exec
+from git_diff_lines import list_changed_lines_in_last_commit
 
 class GerritReviewRobot:
     """
@@ -30,7 +31,7 @@ class GerritReviewRobot:
     @property
     def diff_lines(self):
         if not hasattr(self, '__diff_lines'):
-            self.__diff_lines = set()
+            self.__diff_lines = list_changed_lines_in_last_commit()
         return self.__diff_lines
 
     @property
