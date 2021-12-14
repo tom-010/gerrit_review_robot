@@ -2,7 +2,7 @@ from collections import defaultdict
 import argparse
 from gerrit_review_robot.gerrit import Gerrit
 import os
-
+from easy_exec import exec
 
 class GerritReviewRobot:
     """
@@ -62,19 +62,18 @@ class GerritReviewRobot:
         self.is_configured = True
 
     def __parse_current_change_id(self):
-        last_commit_message = self._run('git log -1 --pretty=%B')
+        last_commit_message, stderr, has_error = exec('git log -1 --pretty=%B')
         for line in last_commit_message.split('\n'):
             if line.startswith('Change-Id:'):
                 return line.replace('Change-Id:', '').strip()
 
     def _generate_description(self):
-        name = self.name if hasattr(self, 'name') else self.__class__.name
+        name = self.name if hasattr(self, 'name') else self.__class__
         description = self.description if hasattr(self, 'description') else ''
         if description:
             name += ': ' + description
         return name
 
-    
 
 class Review:
 

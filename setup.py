@@ -9,12 +9,13 @@ README = (HERE / "README.md").read_text()
 setup(
     name='gerrit_review_robot',
     url='https://github.com/tom-010/gerrit_review_robot',
-    version='0.0.1',
+    version='0.0.2',
     author='Thomas Deniffel',
     author_email='tdeniffel@gmail.com',
     packages=['gerrit_review_robot'],
     license='Apache2',
     install_requires=[
+        'easy_exec'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
