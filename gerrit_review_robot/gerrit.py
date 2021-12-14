@@ -45,10 +45,13 @@ class Gerrit:
             auth=(self.username, self.password) if self.use_auth else None,
             headers={'Accept': 'application/json'}
         )
+        if int(res.status_code/100) != 2:
+            raise Exception(f'Error while connecting to Gerrit ({url}): Status-Code: {res.status_code}')
         res = res.content.decode()
         # see https://gerrit-review.googlesource.com/Documentation/rest-api.html#output
         XSSI_prefix = ")]}'\n"
         res = res[len(XSSI_prefix):]
+        
         res = json.loads(res)
         return res
 
@@ -60,6 +63,8 @@ class Gerrit:
             auth=(self.username, self.password) if self.use_auth else None,
             headers={'Accept': 'application/json'}
         )
+        if int(res.status_code/100) != 2:
+            raise Exception(f'Error while connecting to Gerrit ({url}): Status-Code: {res.status_code}')
         res = res.content.decode()
         # see https://gerrit-review.googlesource.com/Documentation/rest-api.html#output
         XSSI_prefix = ")]}'\n"
@@ -74,6 +79,8 @@ class Gerrit:
             auth=(self.username, self.password) if self.use_auth else None,
             headers={'Accept': 'application/json'},
         )
+        if int(res.status_code/100) != 2:
+            raise Exception(f'Error while connecting to Gerrit ({url}): Status-Code: {res.status_code}')
         res = res.content.decode()
         # see https://gerrit-review.googlesource.com/Documentation/rest-api.html#output
         XSSI_prefix = ")]}'\n"

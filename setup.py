@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 setup(
     name='gerrit_review_robot',
     url='https://github.com/tom-010/gerrit_review_robot',
-    version='0.0.2',
+    version='0.0.3',
     author='Thomas Deniffel',
     author_email='tdeniffel@gmail.com',
     packages=['gerrit_review_robot'],
